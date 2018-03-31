@@ -1,0 +1,9 @@
+ 1. Attach file DATABASE_DT.mdf trong SQL
+ 2. Sửa conectstring
+	+ PMQLCHDIENTHOAI -> App.config
+	+ DTO -> Properties
+	+ DAO -> Properties
+	Data Source=NGUYENNHIPUKA;Initial Catalog=DATABASE_DT;User ID=NguyenNhi
+ 3. Set as Startup Project -> PMQLCHDIENTHOAI
+ 4. Run chương trình (Lỗi cứ Yes).
+ 5. Tài khoản đăng nhập : 000002; pass : nguyennhipuka

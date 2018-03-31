@@ -1,0 +1,1683 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DATABASE_DT" Class="QLCHDTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=NGUYENNHIPUKA;Initial Catalog=DATABASE_DT;Integrated Security=True" SettingsObjectName="DTO.Properties.Settings" SettingsPropertyName="DATABASE_DTConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BANK" Member="BANKs">
+    <Type Name="BANK">
+      <Column Name="MANH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENNH" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="BANK_NCC" Member="NCCs" ThisKey="MANH" OtherKey="MANH" Type="NCC" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TAIKHOANDN" Member="TAIKHOANDNs">
+    <Type Name="TAIKHOANDN">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTK" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="MATKHAUTK" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TRANGTHAITK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="QUENMK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYTAO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYRESET" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TAIKHOANDN_NDNHOMND" Member="NDNHOMNDs" ThisKey="MANV" OtherKey="MANV" Type="NDNHOMND" />
+      <Association Name="NHANVIEN_TAIKHOANDN" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BAOHANH" Member="BAOHANHs">
+    <Type Name="BAOHANH">
+      <Column Name="IDBH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IDPBH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NGUYENNHAN" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYLAPBH" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYGIAOBH" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGBH" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="SDTNHAN" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Association Name="NHANVIEN_BAOHANH" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+      <Association Name="PHIEUBAOHANH_BAOHANH" Member="PHIEUBAOHANH" ThisKey="IDPBH" OtherKey="IDPBH" Type="PHIEUBAOHANH" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CT_HANG" Member="CT_HANGs">
+    <Type Name="CT_HANG">
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TON_MAX" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TON_MIN" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="KHUYENMAI_H" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTHDB" Member="CTHDBs">
+    <Type Name="CTHDB">
+      <Column Name="MAHDB" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SOLUONGB" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DONGIAHDB" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="KHUYENMAI" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TGBHBAN" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="THANHTIEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="CTHDB_PHIEUBAOHANH" Member="PHIEUBAOHANHs" ThisKey="MAHDB,MAH" OtherKey="MAHDB,MAH" Type="PHIEUBAOHANH" />
+      <Association Name="HANG_CTHDB" Member="HANG" ThisKey="MAH" OtherKey="MAH" Type="HANG" IsForeignKey="true" />
+      <Association Name="HDB_CTHDB" Member="HDB" ThisKey="MAHDB" OtherKey="MAHDB" Type="HDB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTHDM" Member="CTHDMs">
+    <Type Name="CTHDM">
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MAHDM" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DONGIAHM" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TGBAOHANH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SLUONGHM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="THANHTIEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TRANGTHAI" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="HANG_CTHDM" Member="HANG" ThisKey="MAH" OtherKey="MAH" Type="HANG" IsForeignKey="true" />
+      <Association Name="HDM_CTHDM" Member="HDM" ThisKey="MAHDM" OtherKey="MAHDM" Type="HDM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTHDSC" Member="CTHDSCs">
+    <Type Name="CTHDSC">
+      <Column Name="SOHIEU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MASC" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENTBSC" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LOISC" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="MOTASC" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="CHIPHISC" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGCTSC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="HANG_CTHDSC" Member="HANG" ThisKey="MAH" OtherKey="MAH" Type="HANG" IsForeignKey="true" />
+      <Association Name="SUACHUA_CTHDSC" Member="SUACHUA" ThisKey="MASC" OtherKey="MASC" Type="SUACHUA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHUCVU" Member="CHUCVUs">
+    <Type Name="CHUCVU">
+      <Column Name="MACV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENCV" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="CHUCVU_NHANVIEN" Member="NHANVIENs" ThisKey="MACV" OtherKey="MACV" Type="NHANVIEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DVT" Member="DVTs">
+    <Type Name="DVT">
+      <Column Name="MADVT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENDVT" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="DVT_HANG" Member="HANGs" ThisKey="MADVT" OtherKey="MADVT" Type="HANG" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HANG" Member="HANGs">
+    <Type Name="HANG">
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MALOAI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MADVT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MANCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SLH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DONGIAM" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="DONGIAB" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TGBH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NSX" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGH" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="MOTAH" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="HANG_CTHDB" Member="CTHDBs" ThisKey="MAH" OtherKey="MAH" Type="CTHDB" />
+      <Association Name="HANG_CTHDM" Member="CTHDMs" ThisKey="MAH" OtherKey="MAH" Type="CTHDM" />
+      <Association Name="HANG_CTHDSC" Member="CTHDSCs" ThisKey="MAH" OtherKey="MAH" Type="CTHDSC" />
+      <Association Name="DVT_HANG" Member="DVT" ThisKey="MADVT" OtherKey="MADVT" Type="DVT" IsForeignKey="true" />
+      <Association Name="LOAIHANG_HANG" Member="LOAIHANG" ThisKey="MALOAI" OtherKey="MALOAI" Type="LOAIHANG" IsForeignKey="true" />
+      <Association Name="NCC_HANG" Member="NCC" ThisKey="MANCC" OtherKey="MANCC" Type="NCC" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HDB" Member="HDBs">
+    <Type Name="HDB">
+      <Column Name="MAHDB" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MALYDO" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MAKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="MAPTGH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENKHB" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DIACHIKHB" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SDTKHB" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYBAN" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TRIGIAHDB" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGHDB" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="PHIGIAOH" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="THUTHEMHDB" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NOHDB" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="HDB_CTHDB" Member="CTHDBs" ThisKey="MAHDB" OtherKey="MAHDB" Type="CTHDB" />
+      <Association Name="KHACHHANG_HDB" Member="KHACHHANG" ThisKey="MAKH" OtherKey="MAKH" Type="KHACHHANG" IsForeignKey="true" />
+      <Association Name="LYDOXUAT_HDB" Member="LYDOXUAT" ThisKey="MALYDO" OtherKey="MALYDO" Type="LYDOXUAT" IsForeignKey="true" />
+      <Association Name="NHANVIEN_HDB" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+      <Association Name="PTGIAOHANG_HDB" Member="PTGIAOHANG" ThisKey="MAPTGH" OtherKey="MAPTGH" Type="PTGIAOHANG" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HDM" Member="HDMs">
+    <Type Name="HDM">
+      <Column Name="MAHDM" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="MANCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYTAOHDM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HANNOHDM" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="GTGTHDM" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TONGTIEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGHDM" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGTTOAN" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="HDM_CTHDM" Member="CTHDMs" ThisKey="MAHDM" OtherKey="MAHDM" Type="CTHDM" />
+      <Association Name="HDM_PHIEUCHI" Member="PHIEUCHIs" ThisKey="MAHDM" OtherKey="MAHDM" Type="PHIEUCHI" />
+      <Association Name="NCC_HDM" Member="NCC" ThisKey="MANCC" OtherKey="MANCC" Type="NCC" IsForeignKey="true" />
+      <Association Name="NHANVIEN_HDM" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACHHANG" Member="KHACHHANGs">
+    <Type Name="KHACHHANG">
+      <Column Name="MAKH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENKH" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DIACHIKH" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SDTKH" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="EMAILKH" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="KHACHHANG_HDB" Member="HDBs" ThisKey="MAKH" OtherKey="MAKH" Type="HDB" />
+      <Association Name="KHACHHANG_SUACHUA" Member="SUACHUAs" ThisKey="MAKH" OtherKey="MAKH" Type="SUACHUA" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOAIHANG" Member="LOAIHANGs">
+    <Type Name="LOAIHANG">
+      <Column Name="MALOAI" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="LOAIHANG_HANG" Member="HANGs" ThisKey="MALOAI" OtherKey="MALOAI" Type="HANG" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LYDOXUAT" Member="LYDOXUATs">
+    <Type Name="LYDOXUAT">
+      <Column Name="MALYDO" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENLYDO" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="LYDOXUAT_HDB" Member="HDBs" ThisKey="MALYDO" OtherKey="MALYDO" Type="HDB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MANCHUCNANG" Member="MANCHUCNANGs">
+    <Type Name="MANCHUCNANG">
+      <Column Name="MACN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENMANHINH" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TRANGTHAI" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="MANCHUCNANG_PHANQUYEN" Member="PHANQUYENs" ThisKey="MACN" OtherKey="MACN" Type="PHANQUYEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NCC" Member="NCCs">
+    <Type Name="NCC">
+      <Column Name="MANCC" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MANH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENNCC" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SDTNCC" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="EMAILNCC" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="DIACHINCC" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="STKBANK" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYTAONCC" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TRANGTHAINCC" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="NCC_HANG" Member="HANGs" ThisKey="MANCC" OtherKey="MANCC" Type="HANG" />
+      <Association Name="NCC_HDM" Member="HDMs" ThisKey="MANCC" OtherKey="MANCC" Type="HDM" />
+      <Association Name="BANK_NCC" Member="BANK" ThisKey="MANH" OtherKey="MANH" Type="BANK" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NDNHOMND" Member="NDNHOMNDs">
+    <Type Name="NDNHOMND">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GHICHU" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="TAIKHOANDN_NDNHOMND" Member="TAIKHOANDN" ThisKey="MANV" OtherKey="MANV" Type="TAIKHOANDN" IsForeignKey="true" />
+      <Association Name="NHOMNGUOIDUNG_NDNHOMND" Member="NHOMNGUOIDUNG" ThisKey="MANHOM" OtherKey="MANHOM" Type="NHOMNGUOIDUNG" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
+    <Type Name="NHANVIEN">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDNV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MACV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENNV" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="DIACHINV" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SDTNV" Type="System.String" DbType="NVarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="GIOITINHNV" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYSINH" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TRANGTHAINV" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYTAONV" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CMND" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="BACLUONG" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PHUCAP" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="LUONG" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="NHANVIEN_TAIKHOANDN" Member="TAIKHOANDN" ThisKey="MANV" OtherKey="MANV" Type="TAIKHOANDN" Cardinality="One" />
+      <Association Name="NHANVIEN_BAOHANH" Member="BAOHANHs" ThisKey="MANV" OtherKey="MANV" Type="BAOHANH" />
+      <Association Name="NHANVIEN_HDB" Member="HDBs" ThisKey="MANV" OtherKey="MANV" Type="HDB" />
+      <Association Name="NHANVIEN_HDM" Member="HDMs" ThisKey="MANV" OtherKey="MANV" Type="HDM" />
+      <Association Name="NHANVIEN_PHIEUBAOHANH" Member="PHIEUBAOHANHs" ThisKey="MANV" OtherKey="MANV" Type="PHIEUBAOHANH" />
+      <Association Name="NHANVIEN_PHIEUCHI" Member="PHIEUCHIs" ThisKey="MANV" OtherKey="MANV" Type="PHIEUCHI" />
+      <Association Name="NHANVIEN_SUACHUA" Member="SUACHUAs" ThisKey="MANV" OtherKey="MANV" Type="SUACHUA" />
+      <Association Name="CHUCVU_NHANVIEN" Member="CHUCVU" ThisKey="MACV" OtherKey="MACV" Type="CHUCVU" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHOMNGUOIDUNG" Member="NHOMNGUOIDUNGs">
+    <Type Name="NHOMNGUOIDUNG">
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEMNHOM" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GHICHU" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="NHOMNGUOIDUNG_NDNHOMND" Member="NDNHOMNDs" ThisKey="MANHOM" OtherKey="MANHOM" Type="NDNHOMND" />
+      <Association Name="NHOMNGUOIDUNG_PHANQUYEN" Member="PHANQUYENs" ThisKey="MANHOM" OtherKey="MANHOM" Type="PHANQUYEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PTGIAOHANG" Member="PTGIAOHANGs">
+    <Type Name="PTGIAOHANG">
+      <Column Name="MAPTGH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENPTGH" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PHIPTGH" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="PTGIAOHANG_HDB" Member="HDBs" ThisKey="MAPTGH" OtherKey="MAPTGH" Type="HDB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHANQUYEN" Member="PHANQUYENs">
+    <Type Name="PHANQUYEN">
+      <Column Name="MACN" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="MANCHUCNANG_PHANQUYEN" Member="MANCHUCNANG" ThisKey="MACN" OtherKey="MACN" Type="MANCHUCNANG" IsForeignKey="true" />
+      <Association Name="NHOMNGUOIDUNG_PHANQUYEN" Member="NHOMNGUOIDUNG" ThisKey="MANHOM" OtherKey="MANHOM" Type="NHOMNGUOIDUNG" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHIEUBAOHANH" Member="PHIEUBAOHANHs">
+    <Type Name="PHIEUBAOHANH">
+      <Column Name="IDPBH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MAHDB" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYLAPPBH" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SERIALBH" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGPBH" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="PHIEUBAOHANH_BAOHANH" Member="BAOHANHs" ThisKey="IDPBH" OtherKey="IDPBH" Type="BAOHANH" />
+      <Association Name="CTHDB_PHIEUBAOHANH" Member="CTHDB" ThisKey="MAHDB,MAH" OtherKey="MAHDB,MAH" Type="CTHDB" IsForeignKey="true" />
+      <Association Name="NHANVIEN_PHIEUBAOHANH" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHIEUCHI" Member="PHIEUCHIs">
+    <Type Name="PHIEUCHI">
+      <Column Name="MAPCHDM" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DIENGIAI" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYCHI" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MAHDM" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TIEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="HDM_PHIEUCHI" Member="HDM" ThisKey="MAHDM" OtherKey="MAHDM" Type="HDM" IsForeignKey="true" />
+      <Association Name="NHANVIEN_PHIEUCHI" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SUACHUA" Member="SUACHUAs">
+    <Type Name="SUACHUA">
+      <Column Name="MASC" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MAKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TENKHSC" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SDTKHSC" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYNHANSC" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYGIAOSC" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TONGCHIPHISC" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="TINHTRANGSC" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="SUACHUA_CTHDSC" Member="CTHDSCs" ThisKey="MASC" OtherKey="MASC" Type="CTHDSC" />
+      <Association Name="KHACHHANG_SUACHUA" Member="KHACHHANG" ThisKey="MAKH" OtherKey="MAKH" Type="KHACHHANG" IsForeignKey="true" />
+      <Association Name="NHANVIEN_SUACHUA" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_Add_CHUCVU" Method="sp_Add_CHUCVU">
+    <Parameter Name="TENCV" Parameter="tENCV" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_User_ResetPassword" Method="sp_User_ResetPassword">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MATKHAUMOI" Parameter="mATKHAUMOI" Type="System.String" DbType="VarChar(32)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Add_DVT" Method="sp_Add_DVT">
+    <Parameter Name="TENDVT" Parameter="tENDVT" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Add_LOAI" Method="sp_Add_LOAI">
+    <Parameter Name="TENLOAI" Parameter="tENLOAI" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_BAOHANH_Getlist" Method="sp_BAOHANH_Getlist">
+    <ElementType Name="sp_BAOHANH_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã bảo hành]" Member="Mã_bảo_hành" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã phiếu bảo hành]" Member="Mã_phiếu_bảo_hành" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Nguyên nhân]" Member="Nguyên_nhân" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[Số điện thoại liên lạc]" Member="Số_điện_thoại_liên_lạc" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Tình trạng phiếu bảo hành]" Member="Tình_trạng_phiếu_bảo_hành" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="[Mã nhân viên lập ]" Member="Mã_nhân_viên_lập_" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[Tên nhân viên]" Member="Tên_nhân_viên" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Ngày lập]" Member="Ngày_lập" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Ngày giao]" Member="Ngày_giao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_BAOHANH_GetlistByIDBH" Method="sp_BAOHANH_GetlistByIDBH">
+    <Parameter Name="IDBH" Parameter="iDBH" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_BAOHANH_GetlistByIDBHResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã bảo hành]" Member="Mã_bảo_hành" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã phiếu bảo hành]" Member="Mã_phiếu_bảo_hành" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Nguyên nhân]" Member="Nguyên_nhân" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[Số điện thoại liên lạc]" Member="Số_điện_thoại_liên_lạc" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Tình trạng phiếu bảo hành]" Member="Tình_trạng_phiếu_bảo_hành" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="[Mã nhân viên lập ]" Member="Mã_nhân_viên_lập_" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[Tên nhân viên]" Member="Tên_nhân_viên" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Ngày lập]" Member="Ngày_lập" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Ngày giao]" Member="Ngày_giao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_BAOHANH_GetlistByIDPBH" Method="sp_BAOHANH_GetlistByIDPBH">
+    <Parameter Name="IDPBH" Parameter="iDPBH" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_BAOHANH_GetlistByIDPBHResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã bảo hành]" Member="Mã_bảo_hành" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã phiếu bảo hành]" Member="Mã_phiếu_bảo_hành" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số Serial]" Member="Số_Serial" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Nguyên nhân]" Member="Nguyên_nhân" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[Mã Khách hàng]" Member="Mã_Khách_hàng" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Tên khách hàng]" Member="Tên_khách_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Số điện thoại liên lạc]" Member="Số_điện_thoại_liên_lạc" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Tình trạng phiếu bảo hành]" Member="Tình_trạng_phiếu_bảo_hành" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="[Mã nhân viên lập ]" Member="Mã_nhân_viên_lập_" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[Tên nhân viên]" Member="Tên_nhân_viên" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Ngày lập]" Member="Ngày_lập" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Ngày giao]" Member="Ngày_giao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Tình trạng bảo hành]" Member="Tình_trạng_bảo_hành" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_BAOHANH_UpdateByID" Method="sp_BAOHANH_UpdateByID">
+    <Parameter Name="IDBH" Parameter="iDBH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NGUYENNHAN" Parameter="nGUYENNHAN" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="NGAYGIAOBH" Parameter="nGAYGIAOBH" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TINHTRANGBH" Parameter="tINHTRANGBH" Type="System.Byte" DbType="TinyInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Create_NhomQuyen" Method="sp_Create_NhomQuyen">
+    <Parameter Name="TEMNHOM" Parameter="tEMNHOM" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="GHICHU" Parameter="gHICHU" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Create_TaiKhoan" Method="sp_Create_TaiKhoan">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="TENNV" Parameter="tENNV" Type="System.String" DbType="NVarChar(60)" />
+    <Parameter Name="MATKHAUTK" Parameter="mATKHAUTK" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TRANGTHAITK" Parameter="tRANGTHAITK" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_CTHDB_Getlist" Method="sp_CTHDB_Getlist">
+    <ElementType Name="sp_CTHDB_GetlistResult">
+      <Column Name="MAHDB" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SOLUONGB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DONGIAHDB" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="KHUYENMAI" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TGBHBAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THANHTIEN" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_CTHDB_Getlist_ByKeyHDB" Method="sp_CTHDB_Getlist_ByKeyHDB">
+    <Parameter Name="MAHDB" Parameter="mAHDB" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_CTHDB_Getlist_ByKeyHDBResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số lượng]" Member="Số_lượng" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Đơn giá]" Member="Đơn_giá" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Khuyến mãi]" Member="Khuyến_mãi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Thời gian bảo hành]" Member="Thời_gian_bảo_hành" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Thành tiền]" Member="Thành_tiền" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_CTHDM_Add" Method="sp_CTHDM_Add">
+    <Parameter Name="MAH" Parameter="mAH" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="DONGIAHM" Parameter="dONGIAHM" Type="System.Double" DbType="Float" />
+    <Parameter Name="TGBAOHANH" Parameter="tGBAOHANH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SLUONGHM" Parameter="sLUONGHM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="THANHTIEN" Parameter="tHANHTIEN" Type="System.Double" DbType="Float" />
+    <Parameter Name="TRANGTHAI" Parameter="tRANGTHAI" Type="System.Byte" DbType="TinyInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_CTHDM_GetlistInfo_ByMaHDM" Method="sp_CTHDM_GetlistInfo_ByMaHDM">
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_CTHDM_GetlistInfo_ByMaHDMResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Đơn giá]" Member="Đơn_giá" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Thời gian bảo hành]" Member="Thời_gian_bảo_hành" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Số lượng nhập]" Member="Số_lượng_nhập" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Thành tiền]" Member="Thành_tiền" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_CTHDSC_Add" Method="sp_CTHDSC_Add">
+    <Parameter Name="MASC" Parameter="mASC" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="MAH" Parameter="mAH" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="TENTBSC" Parameter="tENTBSC" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="LOISC" Parameter="lOISC" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="MOTASC" Parameter="mOTASC" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="CHIPHISC" Parameter="cHIPHISC" Type="System.Double" DbType="Float" />
+    <Parameter Name="TINHTRANGCTSC" Parameter="tINHTRANGCTSC" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_CTHDSC_GetlistByID" Method="sp_CTHDSC_GetlistByID">
+    <Parameter Name="MASC" Parameter="mASC" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_CTHDSC_GetlistByIDResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã sửa chữa]" Member="Mã_sửa_chữa" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Số hiệu]" Member="Số_hiệu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Chi phí]" Member="Chi_phí" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Tình trạng]" Member="Tình_trạng" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="[Mô tả]" Member="Mô_tả" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Lỗi" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="TT" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_CTHDSC_GetlistByIDInfo" Method="sp_CTHDSC_GetlistByIDInfo">
+    <Parameter Name="MASC" Parameter="mASC" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_CTHDSC_GetlistByIDInfoResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Số hiệu]" Member="Số_hiệu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Chi phí]" Member="Chi_phí" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Tình trạng]" Member="Tình_trạng" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="[Mô tả]" Member="Mô_tả" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Lỗi" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_CTHDSC_Update" Method="sp_CTHDSC_Update">
+    <Parameter Name="SOHIEU" Parameter="sOHIEU" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LOISC" Parameter="lOISC" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="MOTASC" Parameter="mOTASC" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="CHIPHISC" Parameter="cHIPHISC" Type="System.Double" DbType="Float" />
+    <Parameter Name="TINHTRANGCTSC" Parameter="tINHTRANGCTSC" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_CheckStatus_User" Method="sp_CheckStatus_User">
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_CheckStatus_UserResult">
+      <Column Name="TRANGTHAITK" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Delete_CHUCVU" Method="sp_Delete_CHUCVU">
+    <Parameter Name="MACV" Parameter="mACV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Delete_DVT" Method="sp_Delete_DVT" IsComposable="true">
+    <Parameter Name="MADVT" Parameter="mADVT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.sp_Delete_LOAI" Method="sp_Delete_LOAI">
+    <Parameter Name="MALOAI" Parameter="mALOAI" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Delete_NhomQuyen" Method="sp_Delete_NhomQuyen">
+    <Parameter Name="MANHOM" Parameter="mANHOM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Delete_User" Method="sp_Delete_User">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MANVDELE" Parameter="mANVDELE" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_DVT_Getlist" Method="sp_DVT_Getlist">
+    <ElementType Name="sp_DVT_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã đơn vị tính]" Member="Mã_đơn_vị_tính" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên đơn vị tính]" Member="Tên_đơn_vị_tính" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_DVT_Getlist_ByKey" Method="sp_DVT_Getlist_ByKey">
+    <Parameter Name="TENDVT" Parameter="tENDVT" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="MADVT" Parameter="mADVT" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_DVT_Getlist_ByKeyResult">
+      <Column Name="MADVT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENDVT" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_GetList_CHUCVU" Method="sp_GetList_CHUCVU">
+    <Parameter Name="MACV" Parameter="mACV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <ElementType Name="sp_GetList_CHUCVUResult">
+      <Column Name="MACV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENCV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDB_Add" Method="sp_HDB_Add">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MAKH" Parameter="mAKH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TONGTIEN" Parameter="tONGTIEN" Type="System.Double" DbType="Float" />
+    <Parameter Name="TINHTRANGHDB" Parameter="tINHTRANGHDB" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="PHIGIAO" Parameter="pHIGIAO" Type="System.Double" DbType="Float" />
+    <Parameter Name="MALYDO" Parameter="mALYDO" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MAPTGH" Parameter="mAPTGH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SDT" Parameter="sDT" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="DIACHI" Parameter="dIACHI" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="TENKH" Parameter="tENKH" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PHUTHU" Parameter="pHUTHU" Type="System.Double" DbType="Float" />
+    <Parameter Name="NO" Parameter="nO" Type="System.Double" DbType="Float" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Parameter Name="MAHDNEW" Parameter="mAHDNEW" Type="System.String" DbType="Char(10)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_HDB_Update_HDB" Method="sp_HDB_Update_HDB">
+    <Parameter Name="MAHDB" Parameter="mAHDB" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="TINHTRANGHDB" Parameter="tINHTRANGHDB" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="THANHTOAN" Parameter="tHANHTOAN" Type="System.Double" DbType="Float" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_HDM_Add" Method="sp_HDM_Add">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MANCC" Parameter="mANCC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="HANNOHDM" Parameter="hANNOHDM" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="GTGTHDM" Parameter="gTGTHDM" Type="System.Double" DbType="Float" />
+    <Parameter Name="TONGTIEN" Parameter="tONGTIEN" Type="System.Double" DbType="Float" />
+    <Parameter Name="TINHTRANGHDM" Parameter="tINHTRANGHDM" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="TINHTRANGTTOAN" Parameter="tINHTRANGTTOAN" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Parameter Name="MAHDNEW" Parameter="mAHDNEW" Type="System.String" DbType="Char(10)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_HDM_GetlistNgay" Method="sp_HDM_GetlistNgay">
+    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="sp_HDM_GetlistNgayResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Nhà cung cấp]" Member="Nhà_cung_cấp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Thuế" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tổng tiền]" Member="Tổng_tiền" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tình trạng thanh toán]" Member="Tình_trạng_thanh_toán" Type="System.String" DbType="NVarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="[Hạn thanh toán]" Member="Hạn_thanh_toán" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn mua]" Member="Tình_trạng_hóa_đơn_mua" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDM_Update_TinhTrangHDM" Method="sp_HDM_Update_TinhTrangHDM">
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="TINHTRANGHDM" Parameter="tINHTRANGHDM" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_HDM_Update_TinhTrangTTHDM" Method="sp_HDM_Update_TinhTrangTTHDM">
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="HANNOHDM" Parameter="hANNOHDM" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TINHTRANGHDM" Parameter="tINHTRANGHDM" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="TINHTRANGTTOAN" Parameter="tINHTRANGTTOAN" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_KH_GetlistMAKH_TENKH_HDB" Method="sp_KH_GetlistMAKH_TENKH_HDB">
+    <ElementType Name="sp_KH_GetlistMAKH_TENKH_HDBResult">
+      <Column Name="MAKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN" Type="System.String" DbType="NVarChar(78) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_KHACHHANG_Delete" Method="sp_KHACHHANG_Delete" IsComposable="true">
+    <Parameter Name="MAKH" Parameter="mAKH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.sp_KHACHHANG_GetList_Bykey" Method="sp_KHACHHANG_GetList_Bykey">
+    <Parameter Name="MAKH" Parameter="mAKH" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_KHACHHANG_GetList_BykeyResult">
+      <Column Name="MAKH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENKH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIACHIKH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SDTKH" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="EMAILKH" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TINHTRANGKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SOLAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONG" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_LayQuyen" Method="sp_LayQuyen">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <ElementType Name="sp_LayQuyenResult">
+      <Column Name="MACN" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_LayQuyen_NV" Method="sp_LayQuyen_NV">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MANHOM" Parameter="mANHOM" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_LayQuyen_NVResult">
+      <Column Name="[Mã nhóm]" Member="Mã_nhóm" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã chức năng]" Member="Mã_chức_năng" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên màn hình]" Member="Tên_màn_hình" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_LOAI_Getlist" Method="sp_LOAI_Getlist">
+    <ElementType Name="sp_LOAI_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã loại]" Member="Mã_loại" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên loại]" Member="Tên_loại" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_LOAI_Getlist_ByKey" Method="sp_LOAI_Getlist_ByKey">
+    <Parameter Name="TENLOAI" Parameter="tENLOAI" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MALOAI" Parameter="mALOAI" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_LOAI_Getlist_ByKeyResult">
+      <Column Name="MALOAI" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_NCC_Add" Method="sp_NCC_Add">
+    <Parameter Name="TENCC" Parameter="tENCC" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="EMAILNCC" Parameter="eMAILNCC" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="SDTNCC" Parameter="sDTNCC" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="STKNH" Parameter="sTKNH" Type="System.String" DbType="VarChar(13)" />
+    <Parameter Name="DIACHINCC" Parameter="dIACHINCC" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MANH" Parameter="mANH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TRANGTHAINCC" Parameter="tRANGTHAINCC" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_NCC_Delete" Method="sp_NCC_Delete" IsComposable="true">
+    <Parameter Name="MANCC" Parameter="mANCC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.sp_NCC_GetList" Method="sp_NCC_GetList">
+    <ElementType Name="sp_NCC_GetListResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên nhà cung cấp]" Member="Tên_nhà_cung_cấp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số điện thoại]" Member="Số_điện_thoại" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Số tài khoản]" Member="Số_tài_khoản" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Tên ngân hàng]" Member="Tên_ngân_hàng" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="[Trạng thái]" Member="Trạng_thái" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_NCC_GetList_Bykey" Method="sp_NCC_GetList_Bykey">
+    <Parameter Name="MANCC" Parameter="mANCC" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_NCC_GetList_BykeyResult">
+      <Column Name="MANCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENNCC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SDTNCC" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="EMAILNCC" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DIACHINCC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="STKBANK" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="NGAYTAONCC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TRANGTHAINCC" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SOLAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONG" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_NCC_GetListExcel" Method="sp_NCC_GetListExcel">
+    <ElementType Name="sp_NCC_GetListExcelResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên nhà cung cấp]" Member="Tên_nhà_cung_cấp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Trạng thái]" Member="Trạng_thái" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_NCC_GetListInfo_Bykey" Method="sp_NCC_GetListInfo_Bykey">
+    <Parameter Name="MANCC" Parameter="mANCC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENCC" Parameter="tENCC" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="sp_NCC_GetListInfo_BykeyResult">
+      <Column Name="MANCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENNCC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SDTNCC" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="EMAILNCC" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DIACHINCC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="STKBANK" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="NGAYTAONCC" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TRANGTHAINCC" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_NCC_GetListName" Method="sp_NCC_GetListName">
+    <ElementType Name="sp_NCC_GetListNameResult">
+      <Column Name="MANCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENNCC" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_NCC_Update" Method="sp_NCC_Update">
+    <Parameter Name="MANCC" Parameter="mANCC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENCC" Parameter="tENCC" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="EMAILNCC" Parameter="eMAILNCC" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="SDTNCC" Parameter="sDTNCC" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="STKNH" Parameter="sTKNH" Type="System.String" DbType="VarChar(13)" />
+    <Parameter Name="DIACHINCC" Parameter="dIACHINCC" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MANH" Parameter="mANH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TRANGTHAINCC" Parameter="tRANGTHAINCC" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_PTGH_Getlist_Info" Method="sp_PTGH_Getlist_Info">
+    <ElementType Name="sp_PTGH_Getlist_InfoResult">
+      <Column Name="MAPTGH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN" Type="System.String" DbType="NVarChar(90) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PHANQUYEN_MANH_Getlist" Method="sp_PHANQUYEN_MANH_Getlist">
+    <Parameter Name="MANHOM" Parameter="mANHOM" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_PHANQUYEN_MANH_GetlistResult">
+      <Column Name="[Mã chức năng]" Member="Mã_chức_năng" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên chức năng]" Member="Tên_chức_năng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Có quyền]" Member="Có_quyền" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PHIEUBAOHANH_Add" Method="sp_PHIEUBAOHANH_Add">
+    <Parameter Name="MAHDB" Parameter="mAHDB" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="MAH" Parameter="mAH" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="SERIALBH" Parameter="sERIALBH" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_PHIEUBAOHANH_Getlist" Method="sp_PHIEUBAOHANH_Getlist">
+    <ElementType Name="sp_PHIEUBAOHANH_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã phiếu bảo  hành]" Member="Mã_phiếu_bảo__hành" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã hóa đơn bán]" Member="Mã_hóa_đơn_bán" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Mã nhân viên]" Member="Mã_nhân_viên" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[Tên nhân viên]" Member="Tên_nhân_viên" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Số Serial thiết bị]" Member="Số_Serial_thiết_bị" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Tình trạng bảo hành]" Member="Tình_trạng_bảo_hành" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PHIEUBAOHANH_GetlistByID" Method="sp_PHIEUBAOHANH_GetlistByID">
+    <Parameter Name="IDPBH" Parameter="iDPBH" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_PHIEUBAOHANH_GetlistByIDResult">
+      <Column Name="MAHDB" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MANV" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="TENNV" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="SERIALBH" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="TINHTRANGPBH" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="[Tình trạng bảo hành]" Member="Tình_trạng_bảo_hành" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="MAKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENKHB" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDTKHB" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PHIEUBAOHANH_Update" Method="sp_PHIEUBAOHANH_Update">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_PHIEUCHI_Getlist_ByKey" Method="sp_PHIEUCHI_Getlist_ByKey">
+    <Parameter Name="DIENGIAI" Parameter="dIENGIAI" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MAPCHDM" Parameter="mAPCHDM" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_PHIEUCHI_Getlist_ByKeyResult">
+      <Column Name="MAPCHDM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DIENGIAI" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NGAYCHI" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MAHDM" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="MANV" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="TIEN" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PHIEUCHI_GetlistInfo_ByMaHDM" Method="sp_PHIEUCHI_GetlistInfo_ByMaHDM">
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_PHIEUCHI_GetlistInfo_ByMaHDMResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã phiếu chi]" Member="Mã_phiếu_chi" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã hóa đơn mua]" Member="Mã_hóa_đơn_mua" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Ngày chi]" Member="Ngày_chi" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Tiền chi]" Member="Tiền_chi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Mã nhân viên ]" Member="Mã_nhân_viên_" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[Diễn giải]" Member="Diễn_giải" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PHIEUCHI_Update" Method="sp_PHIEUCHI_Update">
+    <Parameter Name="MAPCHDM" Parameter="mAPCHDM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DIENGIAI" Parameter="dIENGIAI" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="NGAYCHI" Parameter="nGAYCHI" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Staff_Delete" Method="sp_Staff_Delete">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_STAFF_Getlist" Method="sp_STAFF_Getlist">
+    <ElementType Name="sp_STAFF_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên nhân viên]" Member="Tên_nhân_viên" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Chức vụ]" Member="Chức_vụ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[số điện thoại]" Member="số_điện_thoại" Type="System.String" DbType="NVarChar(11)" CanBeNull="true" />
+      <Column Name="[Giới tính]" Member="Giới_tính" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="[Ngày sinh]" Member="Ngày_sinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Trạng thái]" Member="Trạng_thái" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Chứng minh nhân dân]" Member="Chứng_minh_nhân_dân" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="[Bậc lương]" Member="Bậc_lương" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Phụ cấp]" Member="Phụ_cấp" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Lương" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Mã giả]" Member="Mã_giả" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_STAFF_GetlistExcel" Method="sp_STAFF_GetlistExcel">
+    <ElementType Name="sp_STAFF_GetlistExcelResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên nhân viên]" Member="Tên_nhân_viên" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Chức vụ]" Member="Chức_vụ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Trạng thái]" Member="Trạng_thái" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Staff_Update" Method="sp_Staff_Update">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MACV" Parameter="mACV" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENNV" Parameter="tENNV" Type="System.String" DbType="NVarChar(60)" />
+    <Parameter Name="DIACHINV" Parameter="dIACHINV" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="SDTNV" Parameter="sDTNV" Type="System.String" DbType="NVarChar(11)" />
+    <Parameter Name="GIOITINHNV" Parameter="gIOITINHNV" Type="System.String" DbType="NVarChar(3)" />
+    <Parameter Name="NGAYSINH" Parameter="nGAYSINH" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TRANGTHAINV" Parameter="tRANGTHAINV" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NGAYTAONV" Parameter="nGAYTAONV" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CMND" Parameter="cMND" Type="System.String" DbType="VarChar(12)" />
+    <Parameter Name="BACLUONG" Parameter="bACLUONG" Type="System.Double" DbType="Float" />
+    <Parameter Name="PHUCAP" Parameter="pHUCAP" Type="System.Double" DbType="Float" />
+    <Parameter Name="LUONG" Parameter="lUONG" Type="System.Double" DbType="Float" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_SUACHUA_Add" Method="sp_SUACHUA_Add">
+    <Parameter Name="MAKH" Parameter="mAKH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="TENKHSC" Parameter="tENKHSC" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SDTKHSC" Parameter="sDTKHSC" Type="System.String" DbType="Char(11)" />
+    <Parameter Name="NGAYGIAOSC" Parameter="nGAYGIAOSC" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TONGCHIPHISC" Parameter="tONGCHIPHISC" Type="System.Double" DbType="Float" />
+    <Parameter Name="TINHTRANGSC" Parameter="tINHTRANGSC" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Parameter Name="MASC" Parameter="mASC" Type="System.String" DbType="Char(10)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_SUACHUA_Getlist" Method="sp_SUACHUA_Getlist">
+    <ElementType Name="sp_SUACHUA_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã sửa chữa]" Member="Mã_sửa_chữa" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã khách hàng]" Member="Mã_khách_hàng" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Tên khách hàng]" Member="Tên_khách_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Ngày nhận]" Member="Ngày_nhận" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Ngày giao]" Member="Ngày_giao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Tổng chi phí]" Member="Tổng_chi_phí" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tình trạng]" Member="Tình_trạng" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_SUACHUA_Update" Method="sp_SUACHUA_Update">
+    <Parameter Name="MASC" Parameter="mASC" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="TENKHSC" Parameter="tENKHSC" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="SDTKHSC" Parameter="sDTKHSC" Type="System.String" DbType="Char(11)" />
+    <Parameter Name="NGAYGIAOSC" Parameter="nGAYGIAOSC" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TONGCHIPHISC" Parameter="tONGCHIPHISC" Type="System.Double" DbType="Float" />
+    <Parameter Name="TINHTRANGSC" Parameter="tINHTRANGSC" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_TaiKhoan_Getlist_ByName" Method="sp_TaiKhoan_Getlist_ByName">
+    <Parameter Name="TENNV" Parameter="tENNV" Type="System.String" DbType="NVarChar(60)" />
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <ElementType Name="sp_TaiKhoan_Getlist_ByNameResult">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TENTK" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="MATKHAUTK" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TRANGTHAITK" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="QUENMK" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYTAO" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NGAYRESET" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Delete" Method="sp_TB_Delete">
+    <Parameter Name="MATB" Parameter="mATB" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_TB_Getlist" Method="sp_TB_Getlist">
+    <ElementType Name="sp_TB_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Tên" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Loại" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Đơn vị tính]" Member="Đơn_vị_tính" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[Số lượng]" Member="Số_lượng" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Giá nhập]" Member="Giá_nhập" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Giá bán]" Member="Giá_bán" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Khuyến mãi]" Member="Khuyến_mãi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Nhà sản xuất]" Member="Nhà_sản_xuất" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Bảo hành (tháng)]" Member="Bảo_hành__tháng_" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Trình trạng]" Member="Trình_trạng" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="[Mô tả]" Member="Mô_tả" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[Tên nhà cung cấp]" Member="Tên_nhà_cung_cấp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Tồn max]" Member="Tồn_max" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Tồn min]" Member="Tồn_min" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Getlist_AllSoLuongBanNgay" Method="sp_TB_Getlist_AllSoLuongBanNgay">
+    <ElementType Name="sp_TB_Getlist_AllSoLuongBanNgayResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Getlist_AllSoLuongMuaNgay" Method="sp_TB_Getlist_AllSoLuongMuaNgay">
+    <ElementType Name="sp_TB_Getlist_AllSoLuongMuaNgayResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Getlist_ByKey" Method="sp_TB_Getlist_ByKey">
+    <Parameter Name="MAH" Parameter="mAH" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_TB_Getlist_ByKeyResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MALOAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MADVT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DONGIAM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DONGIAB" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="KHUYENMAI_H" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="NSX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TGBH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TINHTRANGH" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="MOTAH" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="MANCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TON_MAX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TON_MIN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Getlist_ByKeyHDM" Method="sp_TB_Getlist_ByKeyHDM">
+    <Parameter Name="MAH" Parameter="mAH" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_TB_Getlist_ByKeyHDMResult">
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TENDVT" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="DONGIAM" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TGBH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Getlist_SapHet" Method="sp_TB_Getlist_SapHet">
+    <ElementType Name="sp_TB_Getlist_SapHetResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Tên" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Loại" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Đơn vị tính]" Member="Đơn_vị_tính" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="[Số lượng]" Member="Số_lượng" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Giá nhập]" Member="Giá_nhập" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Giá bán]" Member="Giá_bán" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Khuyến mãi]" Member="Khuyến_mãi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Nhà sản xuất]" Member="Nhà_sản_xuất" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Bảo hành (tháng)]" Member="Bảo_hành__tháng_" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Trình trạng]" Member="Trình_trạng" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="[Mô tả]" Member="Mô_tả" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="[Tên nhà cung cấp]" Member="Tên_nhà_cung_cấp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Tồn max]" Member="Tồn_max" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Tồn min]" Member="Tồn_min" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Getlist_SoLuongBanNgay" Method="sp_TB_Getlist_SoLuongBanNgay">
+    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="TINHTRANG" Parameter="tINHTRANG" Type="System.Byte" DbType="TinyInt" />
+    <ElementType Name="sp_TB_Getlist_SoLuongBanNgayResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Getlist_SoLuongMuaNgay" Method="sp_TB_Getlist_SoLuongMuaNgay">
+    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="TINHTRANG" Parameter="tINHTRANG" Type="System.Byte" DbType="TinyInt" />
+    <ElementType Name="sp_TB_Getlist_SoLuongMuaNgayResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SL" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_GetlistMAH_TENH" Method="sp_TB_GetlistMAH_TENH">
+    <Parameter Name="MANCC" Parameter="mANCC" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_TB_GetlistMAH_TENHResult">
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN" Type="System.String" DbType="NVarChar(164) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_GetlistMAH_TENH_HDB" Method="sp_TB_GetlistMAH_TENH_HDB">
+    <ElementType Name="sp_TB_GetlistMAH_TENH_HDBResult">
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN" Type="System.String" DbType="NVarChar(164) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_HDB_DaPBH_GetlistMAHB" Method="sp_TB_HDB_DaPBH_GetlistMAHB">
+    <Parameter Name="MAHDB" Parameter="mAHDB" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_TB_HDB_DaPBH_GetlistMAHBResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã phiếu]" Member="Mã_phiếu" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã hóa đơn bán]" Member="Mã_hóa_đơn_bán" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Ngày lập]" Member="Ngày_lập" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Số serial]" Member="Số_serial" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Tình trạng]" Member="Tình_trạng" Type="System.String" DbType="NVarChar(16) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_HDB_PBH_GetlistMAHB" Method="sp_TB_HDB_PBH_GetlistMAHB">
+    <Parameter Name="MAHDB" Parameter="mAHDB" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_TB_HDB_PBH_GetlistMAHBResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã hàng]" Member="Mã_hàng" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên hàng]" Member="Tên_hàng" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số lượng đã bán]" Member="Số_lượng_đã_bán" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Thời gian bảo hành]" Member="Thời_gian_bảo_hành" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Số lượng đã lập bảo hành]" Member="Số_lượng_đã_lập_bảo_hành" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Ngày bán]" Member="Ngày_bán" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_HDB_PBH_GetlistMAHDB_MH" Method="sp_TB_HDB_PBH_GetlistMAHDB_MH">
+    <Parameter Name="MAHDB" Parameter="mAHDB" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="MAH" Parameter="mAH" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_TB_HDB_PBH_GetlistMAHDB_MHResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MAHDB" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MAH" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TENH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SOLUONGB" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TGBH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NGAYBAN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TB_Update" Method="sp_TB_Update">
+    <Parameter Name="MAH" Parameter="mAH" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="MALOAI" Parameter="mALOAI" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MADVT" Parameter="mADVT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MANCC" Parameter="mANCC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENH" Parameter="tENH" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="SLH" Parameter="sLH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DONGIAM" Parameter="dONGIAM" Type="System.Double" DbType="Float" />
+    <Parameter Name="DONGIAB" Parameter="dONGIAB" Type="System.Double" DbType="Float" />
+    <Parameter Name="TGBH" Parameter="tGBH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NSX" Parameter="nSX" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TINHTRANGH" Parameter="tINHTRANGH" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="MOTAH" Parameter="mOTAH" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="MAX" Parameter="mAX" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MIN" Parameter="mIN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="KHUYENMAI" Parameter="kHUYENMAI" Type="System.Double" DbType="Float" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Update_DVT" Method="sp_Update_DVT">
+    <Parameter Name="MADVT" Parameter="mADVT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENDVT" Parameter="tENDVT" Type="System.String" DbType="NVarChar(20)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Update_LOAI" Method="sp_Update_LOAI">
+    <Parameter Name="MALOAI" Parameter="mALOAI" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENLOAI" Parameter="tENLOAI" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Update_NhomQuyen" Method="sp_Update_NhomQuyen">
+    <Parameter Name="MANHOM" Parameter="mANHOM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TEMNHOM" Parameter="tEMNHOM" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="GHICHU" Parameter="gHICHU" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Update_PHANQUYEN" Method="sp_Update_PHANQUYEN">
+    <Parameter Name="MANHOM" Parameter="mANHOM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MACN" Parameter="mACN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FLAT" Parameter="fLAT" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Update_QuyenUser" Method="sp_Update_QuyenUser">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="HOATDONG" Parameter="hOATDONG" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Update_User" Method="sp_Update_User">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MK" Parameter="mK" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TEN" Parameter="tEN" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="QUENMK" Parameter="qUENMK" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="HOATDONG" Parameter="hOATDONG" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_BANK_Add" Method="sp_BANK_Add">
+    <Parameter Name="TENNH" Parameter="tENNH" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_BANK_Update" Method="sp_BANK_Update">
+    <Parameter Name="MANH" Parameter="mANH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENNH" Parameter="tENNH" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_BANK_Delete" Method="sp_BANK_Delete" IsComposable="true">
+    <Parameter Name="MANH" Parameter="mANH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.sp_BANK_Getlist" Method="sp_BANK_Getlist">
+    <ElementType Name="sp_BANK_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MANH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENNH" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_BANK_Getlist_ByKey" Method="sp_BANK_Getlist_ByKey">
+    <Parameter Name="TENNH" Parameter="tENNH" Type="System.String" DbType="NVarChar(30)" />
+    <Parameter Name="MANH" Parameter="mANH" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_BANK_Getlist_ByKeyResult">
+      <Column Name="MANH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENNH" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PTGIAOHANG_Add" Method="sp_PTGIAOHANG_Add">
+    <Parameter Name="TENPTGH" Parameter="tENPTGH" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PHIPTGH" Parameter="pHIPTGH" Type="System.Double" DbType="Float" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_PTGIAOHANG_Update" Method="sp_PTGIAOHANG_Update">
+    <Parameter Name="MAPTGH" Parameter="mAPTGH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENPTGH" Parameter="tENPTGH" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="PHIPTGH" Parameter="pHIPTGH" Type="System.Double" DbType="Float" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_PTGIAOHANG_Delete" Method="sp_PTGIAOHANG_Delete" IsComposable="true">
+    <Parameter Name="MAPTGH" Parameter="mAPTGH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="object" />
+  </Function>
+  <Function Name="dbo.sp_PTGIAOHANG_Getlist" Method="sp_PTGIAOHANG_Getlist">
+    <ElementType Name="sp_PTGIAOHANG_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="MAPTGH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENPTGH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PHIPTGH" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PTGIAOHANG_Getlist_ByKey" Method="sp_PTGIAOHANG_Getlist_ByKey">
+    <Parameter Name="TENPTGH" Parameter="tENPTGH" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MAPTGH" Parameter="mAPTGH" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_PTGIAOHANG_Getlist_ByKeyResult">
+      <Column Name="MAPTGH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TENPTGH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PHIPTGH" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_SUACHUA_GetlistByID" Method="sp_SUACHUA_GetlistByID">
+    <Parameter Name="MASC" Parameter="mASC" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_SUACHUA_GetlistByIDResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã sửa chữa]" Member="Mã_sửa_chữa" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã khách hàng]" Member="Mã_khách_hàng" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Tên khách hàng]" Member="Tên_khách_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Ngày nhận]" Member="Ngày_nhận" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Ngày giao]" Member="Ngày_giao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Tổng chi phí]" Member="Tổng_chi_phí" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tình trạng]" Member="Tình_trạng" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Staff_Getlist_ByID" Method="sp_Staff_Getlist_ByID">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <ElementType Name="sp_Staff_Getlist_ByIDResult">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="IDNV" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MACV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENNV" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="DIACHINV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SDTNV" Type="System.String" DbType="NVarChar(11)" CanBeNull="true" />
+      <Column Name="GIOITINHNV" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="NGAYSINH" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TRANGTHAINV" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAYTAONV" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CMND" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="BACLUONG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="PHUCAP" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="LUONG" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_KHACHHANG_Getlist" Method="sp_KHACHHANG_Getlist">
+    <ElementType Name="sp_KHACHHANG_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên khách hàng]" Member="Tên_khách_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số điện thoại]" Member="Số_điện_thoại" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="[Trạng thái]" Member="Trạng_thái" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.F_CREATE_ID_HDB" Method="F_CREATE_ID_HDB" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.F_CREATE_ID_HDM" Method="F_CREATE_ID_HDM" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.F_CREATE_ID_HDSC" Method="F_CREATE_ID_HDSC" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.F_CREATE_ID_STAFF" Method="F_CREATE_ID_STAFF" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.sp_Staff_Add" Method="sp_Staff_Add">
+    <Parameter Name="TENNV" Parameter="tENNV" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="GIOITINH" Parameter="gIOITINH" Type="System.String" DbType="NVarChar(3)" />
+    <Parameter Name="NGAYSINH" Parameter="nGAYSINH" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="SDT" Parameter="sDT" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="CMND" Parameter="cMND" Type="System.String" DbType="VarChar(12)" />
+    <Parameter Name="DIACHI" Parameter="dIACHI" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="BACLUONG" Parameter="bACLUONG" Type="System.Double" DbType="Float" />
+    <Parameter Name="PHUCAP" Parameter="pHUCAP" Type="System.Double" DbType="Float" />
+    <Parameter Name="LUONG" Parameter="lUONG" Type="System.Double" DbType="Float" />
+    <Parameter Name="CHUCVU" Parameter="cHUCVU" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TRANGTHAI" Parameter="tRANGTHAI" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_KHACHHANG_Add" Method="sp_KHACHHANG_Add">
+    <Parameter Name="TENKH" Parameter="tENKH" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DIACHIKH" Parameter="dIACHIKH" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="SDTKH" Parameter="sDTKH" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="EMAILKH" Parameter="eMAILKH" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="TINHTRANGKH" Parameter="tINHTRANGKH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_KHACHHANG_Update" Method="sp_KHACHHANG_Update">
+    <Parameter Name="MAKH" Parameter="mAKH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENKH" Parameter="tENKH" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DIACHIKH" Parameter="dIACHIKH" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="SDTKH" Parameter="sDTKH" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="EMAILKH" Parameter="eMAILKH" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="TINHTRANGKH" Parameter="tINHTRANGKH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_TB_Add" Method="sp_TB_Add">
+    <Parameter Name="MALOAI" Parameter="mALOAI" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MADVT" Parameter="mADVT" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MANCC" Parameter="mANCC" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENH" Parameter="tENH" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="SLH" Parameter="sLH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DONGIAM" Parameter="dONGIAM" Type="System.Double" DbType="Float" />
+    <Parameter Name="DONGIAB" Parameter="dONGIAB" Type="System.Double" DbType="Float" />
+    <Parameter Name="TGBH" Parameter="tGBH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NSX" Parameter="nSX" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TINHTRANGH" Parameter="tINHTRANGH" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="MOTAH" Parameter="mOTAH" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="MAX" Parameter="mAX" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MIN" Parameter="mIN" Type="System.Int32" DbType="Int" />
+    <Parameter Name="KHUYENMAI" Parameter="kHUYENMAI" Type="System.Double" DbType="Float" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(100)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.F_CREATE_ID_HANG" Method="F_CREATE_ID_HANG" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.sp_HDB_Getlist" Method="sp_HDB_Getlist">
+    <ElementType Name="sp_HDB_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Nhà cung cấp]" Member="Nhà_cung_cấp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số điện thoại]" Member="Số_điện_thoại" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Phương thức giao]" Member="Phương_thức_giao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Phí giao]" Member="Phí_giao" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Phụ thu]" Member="Phụ_thu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Trị giá hóa đơn]" Member="Trị_giá_hóa_đơn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Đã thanh toán]" Member="Đã_thanh_toán" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn bán]" Member="Tình_trạng_hóa_đơn_bán" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Lý do xuất]" Member="Lý_do_xuất" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDB_GetlistInfoByMHDB" Method="sp_HDB_GetlistInfoByMHDB">
+    <Parameter Name="MAHDB" Parameter="mAHDB" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_HDB_GetlistInfoByMHDBResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã khách hàng]" Member="Mã_khách_hàng" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Tên khách hàng]" Member="Tên_khách_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số điện thoại]" Member="Số_điện_thoại" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Phương thức giao]" Member="Phương_thức_giao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Phí giao]" Member="Phí_giao" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Phụ thu]" Member="Phụ_thu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Trị giá hóa đơn]" Member="Trị_giá_hóa_đơn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Đã thanh toán]" Member="Đã_thanh_toán" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn bán]" Member="Tình_trạng_hóa_đơn_bán" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="[Lý do xuất]" Member="Lý_do_xuất" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDB_GetlistNO" Method="sp_HDB_GetlistNO">
+    <ElementType Name="sp_HDB_GetlistNOResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên khách hàng]" Member="Tên_khách_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số điện thoại]" Member="Số_điện_thoại" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Phương thức giao]" Member="Phương_thức_giao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Phí giao]" Member="Phí_giao" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Phụ thu]" Member="Phụ_thu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Trị giá hóa đơn]" Member="Trị_giá_hóa_đơn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Đã thanh toán]" Member="Đã_thanh_toán" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn bán]" Member="Tình_trạng_hóa_đơn_bán" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Lý do xuất]" Member="Lý_do_xuất" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDB_GetlistNgay" Method="sp_HDB_GetlistNgay">
+    <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="sp_HDB_GetlistNgayResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên khách hàng]" Member="Tên_khách_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số điện thoại]" Member="Số_điện_thoại" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Phương thức giao]" Member="Phương_thức_giao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Phí giao]" Member="Phí_giao" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Phụ thu]" Member="Phụ_thu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Trị giá hóa đơn]" Member="Trị_giá_hóa_đơn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Đã thanh toán]" Member="Đã_thanh_toán" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn bán]" Member="Tình_trạng_hóa_đơn_bán" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Lý do xuất]" Member="Lý_do_xuất" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDB_GetlistThanhToan" Method="sp_HDB_GetlistThanhToan">
+    <ElementType Name="sp_HDB_GetlistThanhToanResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên khách hàng]" Member="Tên_khách_hàng" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Địa chỉ]" Member="Địa_chỉ" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Số điện thoại]" Member="Số_điện_thoại" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="[Phương thức giao]" Member="Phương_thức_giao" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Phí giao]" Member="Phí_giao" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Phụ thu]" Member="Phụ_thu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Trị giá hóa đơn]" Member="Trị_giá_hóa_đơn" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Đã thanh toán]" Member="Đã_thanh_toán" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn bán]" Member="Tình_trạng_hóa_đơn_bán" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Lý do xuất]" Member="Lý_do_xuất" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDM_Getlist_TTThanhToan" Method="sp_HDM_Getlist_TTThanhToan">
+    <Parameter Name="TinhTrang" Parameter="tinhTrang" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="sp_HDM_Getlist_TTThanhToanResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Nhà cung cấp]" Member="Nhà_cung_cấp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Thuế" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tổng tiền]" Member="Tổng_tiền" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tình trạng thanh toán]" Member="Tình_trạng_thanh_toán" Type="System.String" DbType="NVarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="[Hạn thanh toán]" Member="Hạn_thanh_toán" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn mua]" Member="Tình_trạng_hóa_đơn_mua" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDM_GetlistInfo_ByMaHDM" Method="sp_HDM_GetlistInfo_ByMaHDM">
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(10)" />
+    <ElementType Name="sp_HDM_GetlistInfo_ByMaHDMResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Nhà cung cấp]" Member="Nhà_cung_cấp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Thuế" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tổng tiền]" Member="Tổng_tiền" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tình trạng thanh toán]" Member="Tình_trạng_thanh_toán" Type="System.String" DbType="NVarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="[Hạn thanh toán]" Member="Hạn_thanh_toán" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn mua]" Member="Tình_trạng_hóa_đơn_mua" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PHIEUCHI_Getlist" Method="sp_PHIEUCHI_Getlist">
+    <ElementType Name="sp_PHIEUCHI_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã phiếu chi]" Member="Mã_phiếu_chi" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Mã hóa đơn mua]" Member="Mã_hóa_đơn_mua" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="[Mã nhân viên]" Member="Mã_nhân_viên" Type="System.String" DbType="Char(6)" CanBeNull="true" />
+      <Column Name="[Tên nhân viên]" Member="Tên_nhân_viên" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="Tiền" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Ngày chi]" Member="Ngày_chi" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Diễn giải]" Member="Diễn_giải" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_HDM_Getlist" Method="sp_HDM_Getlist">
+    <ElementType Name="sp_HDM_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Nhà cung cấp]" Member="Nhà_cung_cấp" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Thuế" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tổng tiền]" Member="Tổng_tiền" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tình trạng thanh toán]" Member="Tình_trạng_thanh_toán" Type="System.String" DbType="NVarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="[Hạn thanh toán]" Member="Hạn_thanh_toán" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn mua]" Member="Tình_trạng_hóa_đơn_mua" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_BAOHANH_Add" Method="sp_BAOHANH_Add">
+    <Parameter Name="IDPBH" Parameter="iDPBH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NGUYENNHAN" Parameter="nGUYENNHAN" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="NGAYGIAOBH" Parameter="nGAYGIAOBH" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="SDT" Parameter="sDT" Type="System.String" DbType="VarChar(11)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Update_CHUCVU" Method="sp_Update_CHUCVU">
+    <Parameter Name="MACV" Parameter="mACV" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TENCV" Parameter="tENCV" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_NhomND_Getlist_ByMaNV" Method="sp_NhomND_Getlist_ByMaNV">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <ElementType Name="sp_NhomND_Getlist_ByMaNVResult">
+      <Column Name="[Mã nhóm]" Member="Mã_nhóm" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên nhóm]" Member="Tên_nhóm" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Thuộc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_User_Login" Method="sp_User_Login">
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Password" Parameter="password" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <ElementType Name="sp_User_LoginResult">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TENTK" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="TRANGTHAITK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_NHANVIEN_TK_Getlist" Method="sp_NHANVIEN_TK_Getlist">
+    <ElementType Name="sp_NHANVIEN_TK_GetlistResult">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TENNV" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_Add_User" Method="sp_Add_User">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="TEN" Parameter="tEN" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="MATKHAUDN" Parameter="mATKHAUDN" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="HOATDONG" Parameter="hOATDONG" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="ErrCode" Parameter="errCode" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Add_NhomQuyen_Cho_User" Method="sp_Add_NhomQuyen_Cho_User">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MANHOM" Parameter="mANHOM" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_Update_NhomQuyen_Cho_User" Method="sp_Update_NhomQuyen_Cho_User">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="MANHOM" Parameter="mANHOM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FLAT" Parameter="fLAT" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="sp_Update_NhomQuyen_Cho_UserResult">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GHICHU" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_NhomND_Getlist" Method="sp_NhomND_Getlist">
+    <ElementType Name="sp_NhomND_GetlistResult">
+      <Column Name="[Mã nhóm]" Member="Mã_nhóm" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên nhóm]" Member="Tên_nhóm" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[Ghi chú]" Member="Ghi_chú" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TaiKhoan_Getlist" Method="sp_TaiKhoan_Getlist">
+    <ElementType Name="sp_TaiKhoan_GetlistResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="[Mã tài khoản]" Member="Mã_tài_khoản" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="[Tên tài khoản]" Member="Tên_tài_khoản" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="[Trạng thái hoạt động]" Member="Trạng_thái_hoạt_động" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày reset]" Member="Ngày_reset" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_TaiKhoan_Info" Method="sp_TaiKhoan_Info">
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="TENNV" Parameter="tENNV" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="sp_TaiKhoan_InfoResult">
+      <Column Name="MANV" Type="System.String" DbType="Char(6) NOT NULL" CanBeNull="false" />
+      <Column Name="TENTK" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="MATKHAUTK" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="TRANGTHAITK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="QUENMK" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYTAO" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYRESET" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_CTHDB_Add" Method="sp_CTHDB_Add">
+    <Parameter Name="MAH" Parameter="mAH" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="MAHDB" Parameter="mAHDB" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="DONGIAHB" Parameter="dONGIAHB" Type="System.Double" DbType="Float" />
+    <Parameter Name="TGBAOHANH" Parameter="tGBAOHANH" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SLUONGHM" Parameter="sLUONGHM" Type="System.Int32" DbType="Int" />
+    <Parameter Name="KHUYENMAI" Parameter="kHUYENMAI" Type="System.Double" DbType="Float" />
+    <Parameter Name="THANHTIEN" Parameter="tHANHTIEN" Type="System.Double" DbType="Float" />
+    <Parameter Name="TRANGTHAI" Parameter="tRANGTHAI" Type="System.Byte" DbType="TinyInt" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.F_PHIEUCHI_Sum_ByMaHDM" Method="F_PHIEUCHI_Sum_ByMaHDM" IsComposable="true">
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(10)" />
+    <Return Type="System.Double" />
+  </Function>
+  <Function Name="dbo.sp_HDM_GetlistDetail" Method="sp_HDM_GetlistDetail">
+    <ElementType Name="sp_HDM_GetlistDetailResult">
+      <Column Name="STT" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Mã" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="[Nhà cung cấp]" Member="Nhà_cung_cấp" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="[Nhân viên phụ trách]" Member="Nhân_viên_phụ_trách" Type="System.String" DbType="NVarChar(60) NOT NULL" CanBeNull="false" />
+      <Column Name="[Ngày tạo]" Member="Ngày_tạo" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Thuế" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Tổng tiền]" Member="Tổng_tiền" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="[Đã thanh toán]" Member="Đã_thanh_toán" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Còn nợ]" Member="Còn_nợ" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Tình trạng thanh toán]" Member="Tình_trạng_thanh_toán" Type="System.String" DbType="NVarChar(13) NOT NULL" CanBeNull="false" />
+      <Column Name="[Hạn thanh toán]" Member="Hạn_thanh_toán" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="[Tình trạng hóa đơn mua]" Member="Tình_trạng_hóa_đơn_mua" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_PHIEUCHI_Add" Method="sp_PHIEUCHI_Add">
+    <Parameter Name="DIENGIAI" Parameter="dIENGIAI" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="MAHDM" Parameter="mAHDM" Type="System.String" DbType="Char(10)" />
+    <Parameter Name="MANV" Parameter="mANV" Type="System.String" DbType="Char(6)" />
+    <Parameter Name="TIEN" Parameter="tIEN" Type="System.Double" DbType="Float" />
+    <Parameter Name="ErrMsg" Parameter="errMsg" Type="System.String" DbType="NVarChar(200)" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
