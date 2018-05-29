@@ -15,6 +15,7 @@
 --[dbo].[sp_CTHDSC_Add]
 --[dbo].[sp_CTHDSC_Update]
 --[dbo].[sp_CTHDSC_Getlist]
+----[dbo].[sp_BAOHANH_GetlistEx]
 /****** Object:  StoredProcedure [dbo].[sp_PHIEUBAOHANH_Add]     ******/
 	SET ANSI_NULLS ON
 	GO
