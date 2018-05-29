@@ -272,7 +272,7 @@ GO
 	GO
 	SET QUOTED_IDENTIFIER ON
 	GO
-		alter PROCEDURE [dbo].[sp_BAOHANH_GetlistEx]
+		Create PROCEDURE [dbo].[sp_BAOHANH_GetlistEx]
 		@IDBH int=0
 		AS
 		BEGIN
